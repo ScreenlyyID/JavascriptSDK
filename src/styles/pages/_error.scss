@@ -1,0 +1,76 @@
+// :host nb-user {
+//     margin-left: auto;
+//   }
+
+  .container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    h3{
+      text-align: center;
+      color:#30aa8b;
+    }
+  
+    .box{
+      background-color: #fafafc;
+      padding: 1.95rem 0 1.95rem 1.95rem;
+  
+      .box-item-center{
+        text-align: center;
+  
+        .box-item-title{
+          width: 100%;
+          margin:0;
+        }
+      }
+  
+      .box-item{
+        display: flex;
+        flex: 0 0 100%;
+        align-items: center;
+  
+        img{
+          max-width: 65px;
+          max-height: 65px;
+        }
+  
+        .box-item-title{
+          width: 100%;
+          margin:0;
+          text-align: center;
+        }
+  
+        .box-item-content{
+          padding: 0.7rem 1.25rem;
+  
+          p{
+            margin: 0;
+            color:#89898b;
+            font-weight: bold;
+            color:black;
+          }
+        }
+      }
+  
+      .box-images{
+        text-align: center;
+  
+        img{
+          width:200px;
+          padding:0;
+        }
+      }
+    }
+  }
+  
+  .logo {
+    background-image: url('../assets/images/logoscreenlyyid.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: contain;
+    width: 150px;
+  
+  }
+  

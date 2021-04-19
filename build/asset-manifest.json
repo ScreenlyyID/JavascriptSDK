@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "https://demo.screenlyyid.com/static/css/main.e15bfa08.chunk.css",
+    "main.js": "https://demo.screenlyyid.com/static/js/main.160ebca6.chunk.js",
+    "main.js.map": "https://demo.screenlyyid.com/static/js/main.160ebca6.chunk.js.map",
+    "runtime-main.js": "https://demo.screenlyyid.com/static/js/runtime-main.00a07c6f.js",
+    "runtime-main.js.map": "https://demo.screenlyyid.com/static/js/runtime-main.00a07c6f.js.map",
+    "static/js/2.19c827fb.chunk.js": "https://demo.screenlyyid.com/static/js/2.19c827fb.chunk.js",
+    "static/js/2.19c827fb.chunk.js.map": "https://demo.screenlyyid.com/static/js/2.19c827fb.chunk.js.map",
+    "index.html": "https://demo.screenlyyid.com/index.html",
+    "precache-manifest.a3bc131be006fa22d668415ac1caed75.js": "https://demo.screenlyyid.com/precache-manifest.a3bc131be006fa22d668415ac1caed75.js",
+    "service-worker.js": "https://demo.screenlyyid.com/service-worker.js",
+    "static/css/main.e15bfa08.chunk.css.map": "https://demo.screenlyyid.com/static/css/main.e15bfa08.chunk.css.map",
+    "static/media/card_back@3x.png": "https://demo.screenlyyid.com/static/media/card_back@3x.0c724885.png",
+    "static/media/illustration1@3x.png": "https://demo.screenlyyid.com/static/media/illustration1@3x.d268a33d.png",
+    "static/media/illustration2@3x.png": "https://demo.screenlyyid.com/static/media/illustration2@3x.406cb2b9.png",
+    "static/media/image_correct.jpg": "https://demo.screenlyyid.com/static/media/image_correct.5e4db527.jpg",
+    "static/media/main.css": "https://demo.screenlyyid.com/static/media/logoscreenlyyid.93516892.png",
+    "static/media/scan_process.gif": "https://demo.screenlyyid.com/static/media/scan_process.0b1f3e62.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.00a07c6f.js",
+    "static/js/2.19c827fb.chunk.js",
+    "static/css/main.e15bfa08.chunk.css",
+    "static/js/main.160ebca6.chunk.js"
+  ]
+}
