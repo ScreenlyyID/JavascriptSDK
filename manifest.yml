@@ -1,4 +1,0 @@
-applications:
-  - name: demo-reactapp
-    random-route: true
-    memory: 512M
