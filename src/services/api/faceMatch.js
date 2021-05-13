@@ -15,7 +15,6 @@ function processFaceMatch(data, correlationID) {
 
 
 function processLiveness(data, correlationID) {
-    console.log("process liveness")
     return request({
         url: '/api/v1/liveness',
         method: 'POST',

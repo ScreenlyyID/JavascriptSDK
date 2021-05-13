@@ -61,7 +61,7 @@ class App extends Component {
         }.bind(this);
 
         const sdk = document.createElement("script");
-        sdk.src = "ScreenlyyIDJavascriptWebSdk.min.js";
+        sdk.src = "AcuantJavascriptWebSdk.min.js";
         sdk.async = true;
 
       
@@ -114,6 +114,7 @@ class App extends Component {
                 <Switch>
                     {/*<Redirect exact from="/" to="/form"/>*/}
                     <Route path="/" exact component={CapturePhoto}/>
+                    <Route path="/capture/photo" exact component={CapturePhoto}/>
                     <Route path="/capture/camera" exact component={AcuantReactCamera}/>
                     <Route path="/photo/confirm" exact component={ProcessedImageResult} />
                     {/* <Route path="/photo/documentimage" exact component={DocumentImage} /> */}

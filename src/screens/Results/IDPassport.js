@@ -24,8 +24,6 @@ class IDPassport extends Component {
             let { instanceID, correlationID } = this.props;
             this.props.processID(instanceID, correlationID);
         }
-        console.log(this.props.resultData);
-        console.log(this.props.sanctions);
     }
 
     processDate(date) {

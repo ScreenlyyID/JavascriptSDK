@@ -15,8 +15,6 @@ const client = (() => {
 
 const request = function(options, store) {
     const onSuccess = function(response) {
-        console.log("success");
-        console.log(response);
         return response.data;
     };
 
@@ -30,19 +28,14 @@ const request = function(options, store) {
     if (process.env.NODE_ENV === 'development') {
         options.headers = {
             ...options.headers,
-            // "Authorization" : `${process.env.REACT_APP_AUTH_TOKEN}`,
             "x-api-key": apiKey,
         };
     } else {
         options.headers = {
             ...options.headers,
-            // "Authorization" : `${process.env.REACT_APP_AUTH_TOKEN}`,
             "x-api-key": apiKey,
         };
     }
-
-    // console.log("API KEY: " + `${process.env.REACT_APP_API_KEY}`);
-    // console.log(options)
 
     return client(options)
         .then(onSuccess)
