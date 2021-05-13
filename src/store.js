@@ -29,6 +29,15 @@ const initialState = {
         cardType: 0,
         orientation: 0,
         sidesLeft: 2
+    },
+    captureProperties:{
+        image:{
+            data:"",
+            width: 0,
+            height: 0
+        },
+        glare: -1,
+        sharpness: -1
     }
 };
 

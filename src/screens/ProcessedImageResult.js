@@ -16,26 +16,22 @@ class ProcessedImageResult extends Component {
     }
 
     proceedToNextStep() {
-        let processedData = this.props.location.state;
-
-        this.sendImageToAPI(this.dataURLToBlob(processedData.cardImage));
+        this.sendImageToAPI(this.dataURLToBlob(this.props.cardImage));
     }
 
     processClassification(classificationData) {
-        let processedData = this.props.location.state;
-        processedData.classificationData = classificationData;
         this.setProcessing(false);
 
-        if (processedData.classificationData && processedData.classificationData.PresentationChanged) {
+        if (classificationData && classificationData.PresentationChanged) {
             this.props.setCardOrientation(0);
         } else {
             this.props.setCardOrientation(1);
         }
-        if (processedData.classificationData && processedData.classificationData.Type.Size !== 3 || this.props.cardType === 2) {
+        if (classificationData && classificationData.Type.Size !== 3 || this.props.cardType === 2) {
             this.props.decrementSidesLeft();
 
             if (this.props.sidesLeft === 1) {
-                this.props.history.push('/');
+                this.props.history.push('/capture/photo');
             } else {
                 if (process.env.REACT_APP_FRM_ENABLED === 'true' && this.props.cardType === 1) {
                     this.props.history.push('/capture/selfie')
@@ -68,7 +64,7 @@ class ProcessedImageResult extends Component {
         this.setProcessing(true);
 
         if ((this.props.frontSubmitted && this.props.sidesLeft === 2) || (this.props.backSubmitted && this.props.sidesLeft === 2) || (this.props.backSubmitted && this.props.frontSubmitted && this.props.sidesLeft === 1)) {
-            ApiService.replaceImage(this.props.instanceID, this.props.correlationID, this.props.orientation, blobData)
+            ApiService.replaceImage(this.props.instanceID, this.props.orientation, blobData)
                 .then(response => {
                     if (this.props.cardType === 1) {
                         this.getClassification();
@@ -99,7 +95,7 @@ class ProcessedImageResult extends Component {
     }
 
     getClassification() {
-        console.log(this.props)
+        console.log('getClassification' + this.props);
         ApiService.getClassification(this.props.instanceID, this.props.correlationID)
             .then(result => {
                 if (result.Type && result.Type.ClassName === 'Unknown') {
@@ -128,29 +124,29 @@ class ProcessedImageResult extends Component {
         for (let i = 0; i < binary.length; i++) {
             array.push(binary.charCodeAt(i));
         }
+
         let blob = new Blob([new Uint8Array(array)], { type: 'image/jpg' });
         
         let formData = new FormData();
         formData.append('', blob);
 
         return formData; 
+
         //return new Blob([new Uint8Array(array)], { type: 'image/jpg' });
     }
 
     retryPhoto() {
-        this.props.history.push('/', {isRetry: true})
+        this.props.history.push('/capture/photo', {isRetry: true})
     }
 
     renderTitleText() {
-        let processedData = this.props.location.state;
-        if (processedData.blurry) return "Image appears blurry. Please retry.";
-        if (processedData.hasGlare) return "Image has glare. Please retry.";
+        if (this.props.blurry) return "Image appears blurry. Please retry.";
+        if (this.props.hasGlare) return "Image has glare. Please retry.";
         return "Ensure all texts are visible."
     }
 
 
     render() {
-        let processedData = this.props.location.state;
         if (this.state.processing) {
             return <Processing />
         }
@@ -161,23 +157,22 @@ class ProcessedImageResult extends Component {
 
                 <div className='body column capture_photo'>
 
-                    {processedData.blurry &&
+                    {this.props.blurry &&
 
                         <div className='column description_container'>
-                            <img alt='screenlyy' className='icon' src={require('../assets/images/icon_attention@2x.png')} />
+                            <img alt='idscango' className='icon' src={require('../assets/images/icon_attention@2x.png')} />
                             <p className={'description error'}>{this.renderTitleText()}</p>
                         </div>
-
                     }
 
                     <div className='row wrapper description_container'>
-                        {!processedData.blurry && <p className={'description'}>{this.renderTitleText()}</p>}
+                        {!this.props.blurry && <p className={'description'}>{this.renderTitleText()}</p>}
                     </div>
 
                     <div className="capture_group">
 
                         <div className='row wrapper capture_container'>
-                            {processedData.cardImage && <img alt={'screenlyy'} src={processedData.cardImage} className='capture'/>}
+                            {this.props.cardImage && <img alt={'idscango'} src={this.props.cardImage} className='capture'/>}
                         </div>
 
                         <div className="wrapper column capture_controls">
@@ -185,7 +180,7 @@ class ProcessedImageResult extends Component {
                             <a className={'btn'} onClick={() => this.proceedToNextStep()}>
                                 <p className={'buttonBgText'}>Continue with this image</p>
                             </a>
-                            {!processedData.orientation && <div className={'btn outline'} onClick={() => this.retryPhoto()}>
+                            {<div className={'btn outline'} onClick={() => this.retryPhoto()}>
                                 <p className={'buttonBdText'}>Retry</p>
                             </div>}
 
@@ -203,12 +198,14 @@ class ProcessedImageResult extends Component {
 function mapStateToProps(state) {
     return {
         instanceID: state.config.instanceID,
-        correlationID: state.config.correlationID,
         orientation: state.idProperties.orientation,
         cardType: state.idProperties.cardType,
         sidesLeft: state.idProperties.sidesLeft,
         frontSubmitted: state.config.frontSubmitted,
-        backSubmitted: state.config.backSubmitted
+        backSubmitted: state.config.backSubmitted,
+        cardImage: state.captureProperties.image.data,
+        blurry: state.captureProperties.sharpness < 50,
+        hasGlare: state.captureProperties.glare < 50
     };
 }
 

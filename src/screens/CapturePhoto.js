@@ -61,7 +61,6 @@ class CapturePhoto extends Component {
             return <Processing />
         }
 
-        console.log('adasdsdsdsdsd', apiKeyManager.getAPIKey())
         return (
             <Fragment>
 
