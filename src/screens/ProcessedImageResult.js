@@ -95,7 +95,6 @@ class ProcessedImageResult extends Component {
     }
 
     getClassification() {
-        console.log('getClassification' + this.props);
         ApiService.getClassification(this.props.instanceID, this.props.correlationID)
             .then(result => {
                 if (result.Type && result.Type.ClassName === 'Unknown') {

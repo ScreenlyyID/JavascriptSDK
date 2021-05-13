@@ -65,9 +65,7 @@ export function processID(instanceID, correlationID) {
 
                     let chunk = 5000;
                     try {
-                        console.log("starting facematch.");
                         const faceImageResult = await ApiService.getFaceImage(instanceID);
-                        console.log(faceImageResult);
                         let faceImageResultArray = new Uint8Array(faceImageResult);
                         let rawFaceImage = '';
                         let faceImageResultSubArray, chunk = 5000;
@@ -76,8 +74,6 @@ export function processID(instanceID, correlationID) {
                             rawFaceImage += String.fromCharCode.apply(null, faceImageResultSubArray);
                         }
                         base64FaceReformattedImage = btoa(rawFaceImage);
-                        console.log('base64encoded: ');
-                        console.log(base64FaceReformattedImage);
                         dataObject['Photo'] = `data:image/jpeg;base64,${base64FaceReformattedImage}`;
                     } catch (err) {
 
