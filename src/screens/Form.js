@@ -119,7 +119,7 @@ class Form extends Component {
             <Fragment>
                 <Header />
                 <div className='row wrapper description_container'>
-                        <p className='description'>Add further details to perform a sanctions and watchilist check, or skip this step.</p>
+                        <p className='description'>Add further details to perform a sanctions and watchlist check, or skip this step.</p>
                     </div>
                     
                 <div className='body column results'>
